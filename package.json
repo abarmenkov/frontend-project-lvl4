@@ -1,0 +1,19 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "frontend-project-lvl4 - Slack",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abarmenkov/frontend-project-lvl4.git"
+  },
+  "author": "ABarmenkov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abarmenkov/frontend-project-lvl4/issues"
+  },
+  "homepage": "https://github.com/abarmenkov/frontend-project-lvl4#readme"
+}
