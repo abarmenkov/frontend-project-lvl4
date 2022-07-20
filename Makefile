@@ -1,20 +1,11 @@
-install:
-	npm ci
-
 start-backend:
-	npx start-server
-
+	npx start-server -p 5001
 start-frontend:
-	npm start
-
-remote-start:
-	make start-backend -s ./build
-
+	make -C my-app start
+start:
+	make start-backend & make start-frontend
 deploy:
 	git push heroku main
-
-lint:
-	npm run lint
-
-build:
-	npm run build
+install:
+	npm ci
+	make -C my-app install
