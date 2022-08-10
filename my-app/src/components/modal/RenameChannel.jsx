@@ -14,7 +14,7 @@ import useChatApi from '../../hooks/useChatApi.jsx';
 import { hideModal } from '../../store/modalsSlice.js';
 
 const RenameChannel = () => {
-  const { t } = useTranslation('translation', { keyPrefix: 'renameChannelModal' });
+  const { t } = useTranslation('translation', { keyPrefix: 'renameChannel' });
   const inputRef = createRef();
   const { renameCurrentChannel } = useChatApi();
   const channels = useSelector(selectors.selectAll);

@@ -8,7 +8,9 @@ const AuthButton = () => {
   const auth = useAuth();
   return (
     auth.loggedIn
-      ? <Button onClick={auth.logOut}>{t('logOut')}</Button>
+      ? (
+        <Button onClick={auth.logOut}>{t('logOut')}</Button>
+      )
       : null
   );
 };
@@ -22,6 +24,7 @@ const Header = () => (
       <AuthButton />
     </Container>
   </div>
+
 );
 
 export default Header;

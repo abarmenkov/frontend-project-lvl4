@@ -13,7 +13,7 @@ import routes from '../routes.js';
 import useAuth from '../hooks/useAuth.jsx';
 
 const SignUp = () => {
-  const { t } = useTranslation('translation', { keyPrefix: 'signup' });
+  const { t } = useTranslation();
   const [signUpFailed, setSignUpFailed] = useState(false);
   const inputRef = useRef();
   const { logIn } = useAuth();
@@ -25,15 +25,15 @@ const SignUp = () => {
 
   const SignupSchema = yup.object({
     username: yup.string()
-      .min(3, 'minUsername')
-      .max(20, 'maxUsername')
-      .required('required'),
+      .min(3, 'signup.minUsername')
+      .max(20, 'signup.maxUsername')
+      .required('signup.required'),
     password: yup.string()
-      .min(6, 'minPassword')
-      .required('required'),
+      .min(6, 'signup.minPassword')
+      .required('signup.required'),
     confirmPassword: yup.string()
-      .required('required')
-      .oneOf([yup.ref('password')], 'samePassword'),
+      .required('signup.required')
+      .oneOf([yup.ref('password')], 'signup.samePassword'),
   });
 
   const f = useFormik({
@@ -45,11 +45,11 @@ const SignUp = () => {
     validationSchema: SignupSchema,
     onSubmit: async (values) => {
       try {
-        const response = await axios.post(routes.registrationPath(), values);
+        const response = await axios.post(routes.signupPath(), values);
         localStorage.setItem('user', JSON.stringify(response.data));
         setSignUpFailed(false);
         logIn();
-        navigate(routes.mainPage());
+        navigate(routes.homePage());
       } catch (err) {
         if (err.isAxiosError && err.response.status === 409) {
           setSignUpFailed(true);
@@ -66,17 +66,17 @@ const SignUp = () => {
         <Card>
           <Card.Body>
             <Card.Title>
-              <h1>{t('title')}</h1>
+              <h1>{t('signup.title')}</h1>
             </Card.Title>
             <Form
               onSubmit={f.handleSubmit}
               className="d-flex flex-column"
             >
-              <FloatingLabel label={t('username')} controlId="username">
+              <FloatingLabel label={t('signup.username')} controlId="username">
                 <Form.Control
                   name="username"
                   type="text"
-                  placeholder={t('username')}
+                  placeholder={t('signup.username')}
                   ref={inputRef}
                   value={f.values.username}
                   onChange={f.handleChange}
@@ -87,11 +87,11 @@ const SignUp = () => {
                 </Form.Control.Feedback>
               </FloatingLabel>
 
-              <FloatingLabel label={t('password')} controlId="password" className="mt-2">
+              <FloatingLabel label={t('signup.password')} controlId="password" className="mt-2">
                 <Form.Control
                   name="password"
                   type="password"
-                  placeholder={t('password')}
+                  placeholder={t('signup.password')}
                   value={f.values.password}
                   onChange={f.handleChange}
                   isInvalid={(f.touched.password && !!f.errors.password) || signUpFailed}
@@ -101,11 +101,11 @@ const SignUp = () => {
                 </Form.Control.Feedback>
               </FloatingLabel>
 
-              <FloatingLabel label={t('confirmPassword')} controlId="confirmPassword" className="mt-2">
+              <FloatingLabel label={t('signup.confirmPassword')} controlId="confirmPassword" className="mt-2">
                 <Form.Control
                   name="confirmPassword"
                   type="password"
-                  placeholder={t('confirmPassword')}
+                  placeholder={t('signup.confirmPassword')}
                   value={f.values.confirmPassword}
                   onChange={f.handleChange}
                   isInvalid={
@@ -113,7 +113,7 @@ const SignUp = () => {
                           }
                 />
                 <Form.Control.Feedback type="invalid">
-                  {f.errors.confirmPassword ? t(f.errors.confirmPassword) : t('signUpFailed')}
+                  {f.errors.confirmPassword ? t(f.errors.confirmPassword) : t('signup.signUpFailed')}
                 </Form.Control.Feedback>
               </FloatingLabel>
               <Button
@@ -122,20 +122,20 @@ const SignUp = () => {
                 size="lg"
                 className="mt-2"
               >
-                {t('signUp')}
+                {t('signup.signUp')}
               </Button>
             </Form>
           </Card.Body>
           <Card.Footer
             className="d-flex align-items-center"
           >
-            {t('registered')}
+            {t('signup.registered')}
             <Link
               to={routes.loginPage()}
               variant="link"
               className="mx-2 link-primary"
             >
-              {t('signin')}
+              {t('signup.signin')}
             </Link>
           </Card.Footer>
         </Card>
