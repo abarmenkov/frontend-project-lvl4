@@ -64,49 +64,49 @@ const LoginPage = () => {
                   alt={t('title')}
                 />
               </Col>
-            <Form onSubmit={f.handleSubmit} className="col-12 col-md-6 mt-3 mt-mb-0">
-              <h1 className="text-center mb-3">{t('title')}</h1>
-              <FloatingLabel label={t('username')} controlId="username">
-                <Form.Control
-                  name="username"
-                  type="text"
-                  placeholder={t('username')}
-                  ref={inputRef}
-                  value={f.values.username}
-                  onChange={f.handleChange}
-                  isInvalid={(f.touched.username && !!f.errors.username) || authFailed}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {f.errors.username ? t(f.errors.username) : null}
-                </Form.Control.Feedback>
-              </FloatingLabel>
-              <FloatingLabel label={t('password')} controlId="password" className="mt-3">
-                <Form.Control
-                  name="password"
-                  type="password"
-                  placeholder={t('password')}
-                  value={f.values.password}
-                  onChange={f.handleChange}
-                  isInvalid={(f.touched.password && !!f.errors.password) || authFailed}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {f.errors.password ? t(f.errors.password) : t('autFailed')}
-                </Form.Control.Feedback>
-              </FloatingLabel>
-              <Button variant="primary" type="submit" size="lg" className="w-100 mt-3">
-                {t('logIn')}
-              </Button>
-            </Form>
-          </Card.Body>
-          <Card.Footer className="p-4">
-            <div className="text-center">
-              <span>{t('notRegistered')}</span>
-              <Link to={routes.signUpPage()} variant="link" className="mx-2 link-primary">
-                {t('registration')}
-              </Link>
-            </div>
-          </Card.Footer>
-        </Card>
+              <Form onSubmit={f.handleSubmit} className="col-12 col-md-6 mt-3 mt-mb-0">
+                <h1 className="text-center mb-3">{t('title')}</h1>
+                <FloatingLabel label={t('username')} controlId="username">
+                  <Form.Control
+                    name="username"
+                    type="text"
+                    placeholder={t('username')}
+                    ref={inputRef}
+                    value={f.values.username}
+                    onChange={f.handleChange}
+                    isInvalid={(f.touched.username && !!f.errors.username) || authFailed}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {f.errors.username ? t(f.errors.username) : null}
+                  </Form.Control.Feedback>
+                </FloatingLabel>
+                <FloatingLabel label={t('password')} controlId="password" className="mt-3">
+                  <Form.Control
+                    name="password"
+                    type="password"
+                    placeholder={t('password')}
+                    value={f.values.password}
+                    onChange={f.handleChange}
+                    isInvalid={(f.touched.password && !!f.errors.password) || authFailed}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {f.errors.password ? t(f.errors.password) : t('autFailed')}
+                  </Form.Control.Feedback>
+                </FloatingLabel>
+                <Button variant="primary" type="submit" size="lg" className="w-100 mt-3">
+                  {t('logIn')}
+                </Button>
+              </Form>
+            </Card.Body>
+            <Card.Footer className="p-4">
+              <div className="text-center">
+                <span>{t('notRegistered')}</span>
+                <Link to={routes.signUpPage()} variant="link" className="mx-2 link-primary">
+                  {t('registration')}
+                </Link>
+              </div>
+            </Card.Footer>
+          </Card>
         </Col>
       </Row>
     </Container>
