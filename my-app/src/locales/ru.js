@@ -13,7 +13,7 @@ const ru = {
       autFailed: 'Неверные имя пользователя или пароль',
       username: 'Ваш ник',
       password: 'Пароль',
-      notRegistered: 'Еще не зарегистрированы?',
+      notRegistered: 'Нет аккаунта?',
       registration: 'Регистрация',
       title: 'Войти',
     },
