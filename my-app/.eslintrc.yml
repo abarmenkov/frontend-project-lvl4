@@ -3,7 +3,7 @@ env:
   es2021: true
 extends:
   - eslint:recommended
-  - plugin:react/recommended
+  - "plugin:react/recommended"
   - react-app
   - airbnb
 parserOptions:
@@ -19,5 +19,5 @@ rules:
   import/no-unresolved: 0
   no-param-reassign: 0
   react/prop-types: 0
-  react/jsx-filename-extension: [0, { "extensions": [".js", ".jsx"] }]
+  react/jsx-filename-extension: [1, { "extensions": [".js", ".jsx"] }]
   react/function-component-definition: 0
