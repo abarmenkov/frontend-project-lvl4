@@ -113,8 +113,8 @@ const SignUp = () => {
                     value={f.values.confirmPassword}
                     onChange={f.handleChange}
                     isInvalid={
-                            (f.touched.confirmPassword && !!f.errors.confirmPassword) || signUpFailed
-                           }
+                      (f.touched.confirmPassword && !!f.errors.confirmPassword) || signUpFailed
+                    }
                   />
                   <Form.Control.Feedback type="invalid">
                     {f.errors.confirmPassword ? t(f.errors.confirmPassword) : t('signUpFailed')}
