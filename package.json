@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Hexlet Project 4",
   "main": "my-app/src/index.js",
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
+  },
   "scripts": {
     "build": "npm run build --prefix my-app",
     "start": "start-server -s ./my-app/build",
