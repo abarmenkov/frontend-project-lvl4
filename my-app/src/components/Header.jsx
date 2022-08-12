@@ -10,8 +10,8 @@ const AuthButton = () => {
     auth.loggedIn
       ? (
         <>
-        <div className='ms-auto me-4'>{auth.getUsername()}</div>
-        <Button onClick={auth.logOut}>{t('logOut')}</Button>
+          <div className="ms-auto me-4">{auth.getUsername()}</div>
+          <Button onClick={auth.logOut}>{t('logOut')}</Button>
         </>
       )
       : null
@@ -25,7 +25,7 @@ const Header = () => (
         <Navbar.Brand href="/">Hexlet Chat</Navbar.Brand>
       </Navbar>
 
-        <AuthButton />
+      <AuthButton />
 
     </Container>
   </div>
