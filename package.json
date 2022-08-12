@@ -8,7 +8,7 @@
     "npm": "8.x"
   },
   "scripts": {
-    "build": "npm run build --prefix my-app",
+    "build": "DISABLE_ESLINT_PLUGIN=true npm run build --prefix my-app",
     "start": "start-server -s ./my-app/build",
     "postinstall": "cd my-app && npm ci"
   },
