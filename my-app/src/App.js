@@ -39,8 +39,8 @@ const App = () => (
       <Header />
 
       <Routes>
-        <Route path={routes.loginPage()} element={<AuthRoute><Login /></AuthRoute>} />
         <Route path={routes.homePage()} element={<PrivateRoute><Chat /></PrivateRoute>} />
+        <Route path={routes.loginPage()} element={<AuthRoute><Login /></AuthRoute>} />
         <Route path={routes.signUpPage()} element={<AuthRoute><SignUp /></AuthRoute>} />
         <Route path={routes.notFoundPage()} element={<NotFoundPage />} />
       </Routes>
