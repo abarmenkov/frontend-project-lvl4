@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Container, Button } from 'react-bootstrap';
+import { Navbar, Button, Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../hooks/useAuth.jsx';
 
@@ -9,7 +9,10 @@ const AuthButton = () => {
   return (
     auth.loggedIn
       ? (
+        <>
+        <div className='ms-auto me-4'>{auth.getUsername()}</div>
         <Button onClick={auth.logOut}>{t('logOut')}</Button>
+        </>
       )
       : null
   );
@@ -21,7 +24,9 @@ const Header = () => (
       <Navbar expand="lg">
         <Navbar.Brand href="/">Hexlet Chat</Navbar.Brand>
       </Navbar>
-      <AuthButton />
+
+        <AuthButton />
+
     </Container>
   </div>
 
