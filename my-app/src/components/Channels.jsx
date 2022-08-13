@@ -48,7 +48,7 @@ const ChannelsItem = (props) => {
             <Dropdown.Item
               onClick={() => dispatch(openModal({
                 type: 'rename',
-                item: name,
+                item: channel,
               }))}
             >
               {t('rename')}
@@ -57,7 +57,7 @@ const ChannelsItem = (props) => {
             <Dropdown.Item
               onClick={() => dispatch(openModal({
                 type: 'remove',
-                item: name,
+                item: channel,
               }))}
             >
               {t('remove')}
