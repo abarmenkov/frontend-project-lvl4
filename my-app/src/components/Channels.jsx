@@ -4,17 +4,16 @@ import {
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import {
-  changeChannel,
-  selectors,
-} from '../store/channelsSlice.js';
+import { changeChannel, selectors } from '../store/channelsSlice.js';
 import ChannelActionsModals from './modal/ChannelActionsModals.jsx';
 import { openModal } from '../store/modalsSlice.js';
 
 const ChannelsItem = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'channels' });
-  const { channel, currentChannelId } = props;
-  const { id, name } = channel;
+  const {
+    channel, currentChannelId,
+  } = props;
+  const { id, name, removable } = channel;
   const dispatch = useDispatch();
 
   return (
@@ -34,7 +33,7 @@ const ChannelsItem = (props) => {
         {name}
       </Button>
 
-      {channel.removable ? (
+      {removable ? (
         <>
           <Dropdown.Toggle
             variant={id === currentChannelId ? 'secondary' : 'none'}
@@ -49,7 +48,7 @@ const ChannelsItem = (props) => {
             <Dropdown.Item
               onClick={() => dispatch(openModal({
                 type: 'rename',
-                item: channel,
+                item: name,
               }))}
             >
               {t('rename')}
@@ -58,7 +57,7 @@ const ChannelsItem = (props) => {
             <Dropdown.Item
               onClick={() => dispatch(openModal({
                 type: 'remove',
-                item: channel,
+                item: name,
               }))}
             >
               {t('remove')}
@@ -73,7 +72,6 @@ const ChannelsItem = (props) => {
 const Channels = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'channels' });
   const channels = useSelector(selectors.selectAll);
-  const currentChannelId = useSelector((state) => state.channels.currentChannelId);
   const dispatch = useDispatch();
 
   return (
@@ -110,7 +108,7 @@ const Channels = () => {
 
             <ChannelsItem
               channel={channel}
-              currentChannelId={currentChannelId}
+              currentChannelId={channels.currentChannelId}
             />
           </Nav.Item>
         ))}
