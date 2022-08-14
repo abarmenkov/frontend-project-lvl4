@@ -30,25 +30,29 @@ const LoginPage = () => {
       .required('required'),
   });
 
+  const handleSubmitForm = async (values) => {
+    setAuthFailed(false);
+    try {
+      const res = await axios.post(routes.loginPath(), values);
+      localStorage.setItem('user', JSON.stringify(res.data));
+      auth.logIn();
+      navigate(routes.homePage());
+    } catch (err) {
+      if (err.isAxiosError && err.response.status === 401) {
+        setAuthFailed(true);
+        inputRef.current.select();
+        return;
+      }
+      throw err;
+    }
+  };
+
   const f = useFormik({
     initialValues: { username: '', password: '' },
     validationSchema: SignupSchema,
-    onSubmit: async (values) => {
-      setAuthFailed(false);
-      try {
-        const res = await axios.post(routes.loginPath(), values);
-        localStorage.setItem('user', JSON.stringify(res.data));
-        auth.logIn();
-        navigate(routes.homePage());
-      } catch (err) {
-        if (err.isAxiosError && err.response.status === 401) {
-          setAuthFailed(true);
-          inputRef.current.select();
-          return;
-        }
-        throw err;
-      }
-    },
+    onSubmit: (values) => handleSubmitForm(
+      values,
+    ),
   });
 
   return (
