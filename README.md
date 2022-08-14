@@ -6,6 +6,11 @@
 ### Demo
 [Click](https://desolate-coast-38361.herokuapp.com/)
 
+```sh
+login: admin
+pass: admin
+```
+
 ### Install
 ```sh
 $ make install
