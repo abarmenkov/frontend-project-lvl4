@@ -4,7 +4,7 @@
 Веб-приложение, реализующее функционал чата, с возможностью создания и управлениями каналами.
 
 ### Demo
-[Click](https://desolate-coast-38361.herokuapp.com/)
+[Click](https://hexlet-chat-by-abarmenkov.herokuapp.com/)
 
 ```sh
 login: admin
