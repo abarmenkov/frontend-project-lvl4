@@ -9,6 +9,7 @@ import * as yup from 'yup';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import routes from '../routes.js';
 import useAuth from '../hooks/useAuth.jsx';
 import avatar from '../images/avatar_1.jpg';
@@ -17,7 +18,7 @@ const SignUp = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'signup' });
   const [signUpFailed, setSignUpFailed] = useState(false);
   const inputRef = useRef();
-  const { logIn } = useAuth();
+  const auth = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,8 +50,12 @@ const SignUp = () => {
         const response = await axios.post(routes.signupPath(), values);
         localStorage.setItem('user', JSON.stringify(response.data));
         setSignUpFailed(false);
-        logIn();
+        auth.logIn();
         navigate(routes.homePage());
+        const toastMessage = t('greeting') + auth.getUsername();
+        toast.success(toastMessage, {
+          position: 'top-center',
+        });
       } catch (err) {
         if (err.isAxiosError && err.response.status === 409) {
           setSignUpFailed(true);

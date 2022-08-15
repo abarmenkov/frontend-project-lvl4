@@ -8,6 +8,7 @@ import { useFormik } from 'formik';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import useAuth from '../hooks/useAuth.jsx';
 import routes from '../routes.js';
 import avatar from '../images/avatar.jpg';
@@ -37,6 +38,10 @@ const LoginPage = () => {
       localStorage.setItem('user', JSON.stringify(res.data));
       auth.logIn();
       navigate(routes.homePage());
+      const toastMessage = t('greeting') + auth.getUsername();
+      toast.success(toastMessage, {
+        position: 'top-center',
+      });
     } catch (err) {
       if (err.isAxiosError && err.response.status === 401) {
         setAuthFailed(true);
