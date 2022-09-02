@@ -38,7 +38,7 @@ const LoginPage = () => {
       localStorage.setItem('user', JSON.stringify(res.data));
       auth.logIn();
       navigate(routes.homePage());
-      const toastMessage = t('greeting') + auth.getUsername();
+      const toastMessage = `${t('greeting')}${auth.getUsername()}!`;
       toast.success(toastMessage, {
         position: 'top-center',
       });

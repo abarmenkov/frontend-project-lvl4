@@ -4,6 +4,8 @@ import {
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import { changeChannel, selectors } from '../store/channelsSlice.js';
 import ChannelActionsModals from './modal/ChannelActionsModals.jsx';
 import { openModal } from '../store/modalsSlice.js';
@@ -73,12 +75,21 @@ const Channels = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'channels' });
   const channels = useSelector(selectors.selectAll);
   const dispatch = useDispatch();
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      {t('createButton')}
+    </Tooltip>
+  );
 
   return (
     <div className="d-flex flex-column h-100">
       <div className="d-flex justify-content-between px-3 mb-3">
         <h2 className="h4 m-0">{t('title')}</h2>
-
+        <OverlayTrigger
+            placement="right"
+            delay={{ show: 150, hide: 250 }}
+            overlay={renderTooltip}
+        >
         <Button
           className="d-flex align-items-center"
           variant="outline-primary"
@@ -90,6 +101,8 @@ const Channels = () => {
         >
           {t('createButtonShort')}
         </Button>
+          </OverlayTrigger>
+
       </div>
 
       <Nav

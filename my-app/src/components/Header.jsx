@@ -1,6 +1,11 @@
 import React from 'react';
-import { Navbar, Button, Container } from 'react-bootstrap';
+import {
+  Navbar, Button, Container, Form,
+} from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+// import 'flag-icon-css/css/flag-icons.min.css';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import useAuth from '../hooks/useAuth.jsx';
 
 const AuthButton = () => {
@@ -18,18 +23,41 @@ const AuthButton = () => {
   );
 };
 
-const Header = () => (
-  <div className="shadow-sm bg-white">
-    <Container className="d-flex justify-content-between align-items-center">
-      <Navbar expand="lg">
-        <Navbar.Brand href="/">Hexlet Chat</Navbar.Brand>
-      </Navbar>
+const Header = () => {
+  const { t } = useTranslation('translation', { keyPrefix: 'header' });
+  const { i18n } = useTranslation();
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language);
+  };
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      {t('language')}
+    </Tooltip>
+  );
+  return (
 
-      <AuthButton />
+    <div className="shadow-sm bg-white">
+      <Container className="d-flex justify-content-between align-items-center">
+        <Navbar expand="lg">
+          <Navbar.Brand href="/">Hexlet Chat</Navbar.Brand>
+          <OverlayTrigger
+            placement="right"
+            delay={{ show: 150, hide: 250 }}
+            overlay={renderTooltip}
+        >
+            <Form.Select size="sm">
+              <option onClick={() => changeLanguage('en')}>English</option>
+              <option onClick={() => changeLanguage('ru')}>Русский</option>
+            </Form.Select>
+          </OverlayTrigger>
+        </Navbar>
 
-    </Container>
-  </div>
+        <AuthButton />
 
-);
+      </Container>
+    </div>
+
+  );
+};
 
 export default Header;

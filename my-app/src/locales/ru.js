@@ -6,6 +6,7 @@ const ru = {
     },
     header: {
       logOut: 'Выйти',
+      language: 'Выбрать язык',
     },
     login: {
       required: 'Поле должно быть заполнено',
@@ -16,7 +17,7 @@ const ru = {
       notRegistered: 'Нет аккаунта?',
       registration: 'Регистрация',
       title: 'Войти',
-      greeting: 'С возвращением: ',
+      greeting: 'С возвращением, ',
     },
     signup: {
       required: 'Поле должно быть заполнено',
@@ -33,7 +34,7 @@ const ru = {
       minPassword: 'Не менее 6 символов',
       samePassword: 'Пароли должны совпадать',
       signUpFailed: 'Пользователь с таким именем уже существует',
-      greeting: 'Добро пожаловать в Hexlet Chat: ',
+      greeting: 'Добро пожаловать в Hexlet Chat, ',
     },
     channels: {
       title: 'Каналы',
@@ -41,6 +42,7 @@ const ru = {
       control: 'Управление каналом',
       rename: 'Переименовать',
       remove: 'Удалить',
+      createButton: 'Создать',
     },
     addChannel: {
       createButton: 'Создать',
