@@ -4,6 +4,10 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import filter from 'leo-profanity';
 import { useTranslation } from 'react-i18next';
+import { FiSend } from 'react-icons/fi';
+import { GrEmoji } from 'react-icons/gr';
+import data from '@emoji-mart/data';
+import Picker from '@emoji-mart/react';
 import useChatApi from '../../hooks/useChatApi.jsx';
 import useAuth from '../../hooks/useAuth.jsx';
 
@@ -12,6 +16,7 @@ const MessagesBody = () => {
   const { getUsername } = useAuth();
   const inputRef = useRef();
   const [message, setMessage] = useState('');
+  const [showEmoji, setShowEmoji] = useState(false);
 
   const messageHandler = (e) => {
     setMessage(e.target.value);
@@ -42,6 +47,15 @@ const MessagesBody = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     sendNewMessage(outgoingMessage, apiResponseHandle);
+    setShowEmoji(false);
+  };
+
+  const handleEmojiShow = () => {
+    setShowEmoji((v) => !v);
+  };
+
+  const handleEmojiSelect = (e) => {
+    setMessage(message + e.native);
   };
 
   return (
@@ -51,6 +65,9 @@ const MessagesBody = () => {
         className="d-flex flex-column"
       >
         <div className="d-flex">
+        <Button variant='primary' type='button' onClick={handleEmojiShow}>
+            <GrEmoji />
+          </Button>
           <FloatingLabel label={t('placeholder')} controlId="message" className="w-100">
             <Form.Control
               ref={inputRef}
@@ -63,16 +80,20 @@ const MessagesBody = () => {
               onChange={messageHandler}
             />
           </FloatingLabel>
+          <Button variant='success' type="submit">
+            <FiSend />
+          </Button>
 
-          <Button
+          {/* <Button
             variant="primary"
             type="submit"
             className="mx-1"
           >
             {t('addButton')}
-          </Button>
+  </Button> */}
         </div>
       </Form>
+      {showEmoji && <Picker data={data} categories={['frequent', 'people', 'nature']} previewPosition={'none'} searchPosition={'none'} onEmojiSelect={handleEmojiSelect} emojiSize={15} />}
     </div>
   );
 };
