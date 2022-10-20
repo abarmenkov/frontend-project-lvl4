@@ -4,8 +4,8 @@ import {
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 // import 'flag-icon-css/css/flag-icons.min.css';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
+// import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+// import Tooltip from 'react-bootstrap/Tooltip';
 import useAuth from '../hooks/useAuth.jsx';
 
 const AuthButton = () => {
@@ -24,23 +24,29 @@ const AuthButton = () => {
 };
 
 const Header = () => {
-  const { t } = useTranslation('translation', { keyPrefix: 'header' });
+  // const { t } = useTranslation('translation', { keyPrefix: 'header' });
   const { i18n } = useTranslation();
-  const changeLanguage = (language) => {
+  const lang = i18n.resolvedLanguage;
+  const changeLanguage = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    i18n.changeLanguage(e.target.value);
+  };
+  /* const changeLanguage = (language) => {
     i18n.changeLanguage(language);
   };
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       {t('language')}
     </Tooltip>
-  );
+  ); */
   return (
 
     <div className="shadow-sm bg-white">
       <Container className="d-flex justify-content-between align-items-center">
         <Navbar expand="lg">
           <Navbar.Brand href="/">Hexlet Chat</Navbar.Brand>
-          <OverlayTrigger
+          {/* <OverlayTrigger
             placement="right"
             delay={{ show: 150, hide: 250 }}
             overlay={renderTooltip}
@@ -49,7 +55,11 @@ const Header = () => {
               <option onClick={() => changeLanguage('en')}>English</option>
               <option onClick={() => changeLanguage('ru')}>Русский</option>
             </Form.Select>
-          </OverlayTrigger>
+          </OverlayTrigger> */}
+          <Form.Select size="sm" defaultValue={lang}>
+              <option value="en" onClick={changeLanguage}>English</option>
+              <option value="ru" onClick={changeLanguage}>Русский</option>
+            </Form.Select>
         </Navbar>
 
         <AuthButton />
