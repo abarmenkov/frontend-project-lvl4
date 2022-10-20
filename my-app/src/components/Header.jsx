@@ -26,20 +26,13 @@ const AuthButton = () => {
 const Header = () => {
   // const { t } = useTranslation('translation', { keyPrefix: 'header' });
   const { i18n } = useTranslation();
+  // const [lang, setLang] = useState(i18n.resolvedLanguage);
   const lang = i18n.resolvedLanguage;
   const changeLanguage = (e) => {
     e.preventDefault();
-    e.stopPropagation();
     i18n.changeLanguage(e.target.value);
   };
-  /* const changeLanguage = (language) => {
-    i18n.changeLanguage(language);
-  };
-  const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      {t('language')}
-    </Tooltip>
-  ); */
+
   return (
 
     <div className="shadow-sm bg-white">
@@ -56,10 +49,13 @@ const Header = () => {
               <option onClick={() => changeLanguage('ru')}>Русский</option>
             </Form.Select>
           </OverlayTrigger> */}
-          <Form.Select size="sm" defaultValue={lang}>
-              <option value="en" onClick={changeLanguage}>English</option>
-              <option value="ru" onClick={changeLanguage}>Русский</option>
+          <Form>
+            <Form.Select size="sm" defaultValue={lang} onChange={changeLanguage}>
+              <option value="en">English</option>
+              <option value="ru">Русский</option>
             </Form.Select>
+          </Form>
+
         </Navbar>
 
         <AuthButton />
