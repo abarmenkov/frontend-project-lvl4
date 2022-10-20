@@ -26,7 +26,6 @@ const AuthButton = () => {
 const Header = () => {
   // const { t } = useTranslation('translation', { keyPrefix: 'header' });
   const { i18n } = useTranslation();
-  // const [lang, setLang] = useState(i18n.resolvedLanguage);
   const lang = i18n.resolvedLanguage;
   const changeLanguage = (e) => {
     e.preventDefault();
